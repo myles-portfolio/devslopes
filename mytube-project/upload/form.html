@@ -1,0 +1,126 @@
+<!doctype html>
+    <html lang="en">
+        <head>
+            <title>MyTube: Upload Video</title>
+            <link rel="stylesheet" href="form.css">
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        </head>
+        <body>
+            <header class="header">
+                <a href="../index.html">
+                    <img src="../images/play.jpg" alt="YouTube Logo" class="yt-logo" />
+                </a>
+                <form action="" class="search-bar">
+                    <input type="search" class="search input" placeholder="Search" aria-label="Search" />
+                    <button type="submit" class="search-button">
+                        <img src="../images/search_black_24dp.svg" alt="Search Icon">
+                    </button>
+                </form>
+                <div class="menu-icons">
+                    <a href="../upload/form.html">
+                        <img src="../images/library_add_black_24dp.svg" alt="Upload Video" />
+                    </a>
+                    <a href="#">
+                        <img src="../images/apps_black_24dp.svg" alt="Apps" />
+                    </a>
+                    <a href="#">
+                        <img src="../images/notifications_black_24dp.svg" alt="Notifications" />
+                    </a>
+                    <a href="#">
+                        <img class="menu-channel-icon" src="http://unsplash.it/36/36?gravity=center" alt="Your Channel" />
+                    </a>
+                </div>
+            </header>
+            <div id="content">
+                <div class="leftContentContainer">
+                    <section class="nav">
+                        <button class="nav-btn active">
+                            <a id="nav-button-link" href="../index.html">Home</a>
+                        </button><br>
+                        <button class="nav-btn">Explore</button><br>
+                        <button class="nav-btn">Shorts</button><br>
+                        <button class="nav-btn">Subscriptions</button>
+                    </section>
+                    <section class="nav">
+                        <button class="nav-btn">Library</button><br>
+                        <button class="nav-btn">History</button><br>
+                        <button class="nav-btn">Watch later</button><br>
+                        <button class="nav-btn">Liked videos</button><br>
+                    </section>
+                </div>
+                <div class="middleContentContainer">
+                    <div class="collections">
+                        <section class="collection-section">
+                            <button class="collection">All</button>
+                            <button class="collection">
+                                <a id="collection-button-link" href="../pages/collection-1.html">Collection 1</a>
+                            </button>
+                            <button class="collection">
+                                <a id="collection-button-link" href="../pages/collection-2.html">Collection 2</a>
+                            </button>
+                            <button class="collection">
+                                <a id="collection-button-link" href="../pages/collection-3.html">Collection 3</a>
+                            </button>
+                            <button class="collection">Collection 4</button>
+                            <button class="collection">Collection 5</button>
+                            <button class="collection">Collection 6</button>
+                            <button class="collection">Collection 7</button>
+                            <button class="collection">Collection 8</button>
+                            <button class="collection">Collection 9</button>
+                        </section>
+                    </div>
+                    <div class="upload-form">
+                        <form action="">
+                            <label for="title">
+                                <h3><b>Video Title</b></h3> 
+                            </label>
+                            <input type="text" name="title" id="title" placeholder="Video title"><br>
+
+                            <label for="fdesc">
+                                <h3><b>Description</b></h3> 
+                            </label>
+                            <textarea name="fdesc" id="fdesc" cols="30" rows="10" placeholder="Write your video description here..."></textarea>
+
+                            <label for="upload">
+                                <h3><b>Video</b></h3> 
+
+                                <input type="file" name="upload" id="upload">
+                                
+                                <br><br>
+
+                                <select name="collection" id="collection" size="1">
+                                    <option value="choose" selected>Choose Collection</option>
+                                    <option value="collectionOne">Collection 1</option>
+                                    <option value="collectionTwo">Collection 2</option>
+                                    <option value="collectionThree">Collection 3</option>
+                                </select>
+
+                                <br><br>
+                                <div class="radio-css">
+                                    <label for="public">
+                                        <input name="upload" id="public" type="radio" value="public">
+                                        Public
+                                    </label> 
+                                    <label for="private">
+                                        <input name="upload" id="private" type="radio" value="private">
+                                        Private
+                                    </label>
+                                </div>
+                            </label>
+
+                            <br><br>
+
+                            <input type="submit" value="Upload Video">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </body>
+        <footer>
+            <address>MyTube by Myles Hobdy</address>
+        </footer>
+    </html>
