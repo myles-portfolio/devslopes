@@ -228,7 +228,7 @@
 
     // JavaScripts Functions
 
-    var warrior = {
+/*     var warrior = {
         name: 'Super Tuffy',
         attack: 70,
         defense: 55,
@@ -251,17 +251,72 @@
         return temp.toFixed(2);
     }
 
-    var weather = 'The temperature outside is ' + toCelsius(46) + ' Celsius!';
+    var weather = 'The temperature outside is ' + toCelsius(46) + ' Celsius!'; */
 
     // console.log(weather);
 
     
-    function calcArea(w, l) {
+    /* function calcArea(w, l) {
         return w * l;
     }
 
     var kitchenArea = calcArea(15, 18);
-    var bedroomArea = calcArea(12, 10);
+    var bedroomArea = calcArea(12, 10); */
 
     // console.log(kitchenArea);
     // console.log(bedroomArea);
+
+    // JavaScript Objects
+
+    var person1 = {
+        firstName: 'Myles',
+        surnameInitial: 'H',
+        age: 33,
+        hobbies: ['gaming', 'coding', 'hiking'],
+        face: {
+            eyeColor: 'brown',
+            glasses: false,
+        },
+        greeting: function() {
+            return 'My name is ' + this.firstName + ' and I\'m ' + this.age + ' years old.'
+        }
+    }
+
+    // console.log(person1);
+    // console.log(person1.face.eyeColor);
+    // console.log(person1.greeting());
+    // console.log(person1['surnameInitial']);
+
+    var person2 = new Object();
+    var person3 = {};
+
+    person3.name = 'Jeremy';
+    person3.age = 28;
+    person3.greeting = function() {
+        return 'My name is ' + this.name + ' and I\'m ' + this.age + ' years old.'
+    }
+
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.greeting = function() {
+        return 'My name is ' + this.name + ' and I\'m ' + this.age + ' years old.'
+        }
+    }
+
+    var humans = [];
+
+    humans.push(new Person('Lars', 21));
+    humans.push(new Person('Ana', 37));
+    humans.push(new Person('Holly', 45));
+    humans.push(new Person('Erik', 29));
+
+    for (var i = 0; i < humans.length; i++) {
+        var human = humans[i];
+        console.log(human.greeting());
+    }
+
+    console.log(humans);
+
+    // console.log(new Person('Lars', 21));
+    // console.log(new Person('Ana',37));
