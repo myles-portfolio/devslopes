@@ -38,3 +38,18 @@ function oddNumbers(max) {
 }
 
 oddNumbers(10);
+
+//The first century spans from the year 1 up to and including the year 100, the second century - from the year 101 up to and including the year 200, etc.
+
+function century(year) {
+  let result = year / 100;
+  if (Number.isInteger(result)) {
+    return result;
+    } else {
+    return Math.floor(result) + 1;
+  }
+}
+
+function century(year) {  
+  return Math.ceil(year/100);
+}
