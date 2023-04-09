@@ -320,3 +320,35 @@
 
     // console.log(new Person('Lars', 21));
     // console.log(new Person('Ana',37));
+
+    // Array method chaining
+
+var classRoom = {
+        grade: '3rd Grade',
+        students: [
+            {name: 'James', score: 90},
+            {name: 'Nancy', score: 92},
+            {name: 'Kirby', score: 87},
+            {name: 'Tom', score: 78}
+        ]
+    }
+
+    var starStudents =  classRoom.students
+      .filter(function(student) {
+          return student.score >= 80;
+      })
+        .map(function(val) {
+          val.score += 5;
+          return val;
+        })
+        	.reduce(function(acc, val, i, array) {
+          	const total = acc.sum + val.score;
+            return {
+            sum: total,
+            arr: array,
+            };
+          }, {sum: 0, arr: []});
+    
+    var studentAverage = starStudents.sum / starStudents.arr.length;
+
+    console.log(starStudents, studentAverage);
