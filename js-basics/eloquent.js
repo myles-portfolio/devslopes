@@ -33,11 +33,41 @@ function fizzBuzz(num) {
 // At each line there is either a space or # character, forming a chessboard.
 // The function should be dynamic and able to produce a grid of varying size.
 
-function chessBoard(row, col) {
-  let chessRow = row[i];
-  let chessCol = col;
-  for (let i = 0; i < chessRow.length; i++) {
-    console.log(row, col);
+function chessBoard(size) {
+  let rows = size;
+  let board = '';
+  for (let l = 1; l < size; l++) {
+    function chessBoardRowA(rows) {
+      let result = '';
+      for (let i = 0; i < rows; i++) {
+        if (i % 2 === 0) {
+          result += ' ';
+        } else {
+          result += '#';
+        }
+      }
+      result += '\n';
+      return result;
+    }
+
+    function chessBoardRowB(rows) {
+      let result = '';
+      for (let x = 0; x < rows; x++) {
+        if (x % 2 === 0) {
+          result += '#';
+        } else {
+          result += ' ';
+        }
+      }
+      result += '\n';
+      return result;
+    }
+
+    if (l % 2 === 1) {
+      board += chessBoardRowA(rows);
+    } else {
+      board += chessBoardRowB(rows);
+    }
   }
-  return [row, col]
+  return board;
 }

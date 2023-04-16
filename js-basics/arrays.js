@@ -37,20 +37,28 @@ const characters = [
 
 // ***REDUCE***
 // Get the total mass of all characters
+const totalMass = characters.reduce((acc, cur) => {
+    return acc + cur.mass;
+}, 0)
+console.log(totalMass);
 // Get the total height of all characters
 // Get the total number of characters in all the character names
 // Get the total number of characters by eye color (hint. a map of eye color to count)
+
 
 // ***FILTER***
 // Get characters with mass greater than 100
 const massOver100Characters = characters.filter((character) => character.mass > 100);
 console.log(massOver100Characters);
+
 // Get characters with height less than 200
 const heightUnder200Characters = characters.filter((character) => character.height < 200);
 console.log(heightUnder200Characters);
+
 // Get all male characters
 const maleCharacters = characters.filter((character) => character.gender === 'male');
 console.log(maleCharacters);
+
 // Get all female characters
 const femaleCharacters = characters.filter((character) => character.gender === 'female');
 console.log(femaleCharacters);
