@@ -42,6 +42,10 @@ const totalMass = characters.reduce((acc, cur) => {
 }, 0)
 console.log(totalMass);
 // Get the total height of all characters
+const totalHeight = characters.reduce((acc, cur) => {
+    return acc + cur.height;
+}, 0)
+console.log(totalHeight);
 // Get the total number of characters in all the character names
 // Get the total number of characters by eye color (hint. a map of eye color to count)
 
