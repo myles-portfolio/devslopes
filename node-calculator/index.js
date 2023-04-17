@@ -1,82 +1,58 @@
 var rs = require('readline-sync');
+const availOperators = ['/','*','+','-'];
+const option = Number + availOperators + Number;
 
-// *** BONUS ***
+function operation() {
+  let operationPrompt = rs.question('Enter an operation with two numbers (e.g. 6 + 4): ');
+  const parts = operationPrompt.split(' ');
+  if (parts.length !== 3) {
+    console.log('Invalid operation format!');
+    return;
+  }
 
-//TODO Make the program more elegant by allowing the user to enter an entire operation on one line such as: "6 / 6" or "5 * 3" (Hint use arguments to solve this)
+  const firstNumber = parseFloat(parts[0]);
+  const operator = parts[1];
+  const secondNumber = parseFloat(parts[2]);
 
-const options = ['/','*','+','-'];
-//var anotherOperation = false;
+  if (isNaN(firstNumber) || isNaN(secondNumber)) {
+    console.log('Invalid operation format!');
+    return;
+  }
 
-var askForOperation = rs.question('What operation would you like to perform? ', {
-  limit: options,
-  limitMessage: 'That is not a valid operation.'
-});
 
-var operator = askForOperation;
+let result;
+switch (operator) {
+  case '+':
+    result = firstNumber + secondNumber;
+    break;
+  case '-':
+    result = firstNumber - secondNumber;
+    break;
+  case '*':
+    result = firstNumber * secondNumber;
+    break;
+  case '/':
+    if (secondNumber === 0) {
+      console.log('Division by zero.');
+      return;
+    }
+    result = firstNumber / secondNumber;
+    break;
+  default:
+    console.log('That is not a valid input.');
+    return;
+  }
 
-var firstNumber = rs.questionInt('Please enter the first number: ',
-{
-limit: Number,
-limitMessage: 'This is not a number.'
-});
-
-var secondNumber = rs.questionInt('Please enter the second number: ',
-{
-limit: Number,
-limitMessage: 'This is not a number.'
-});
-
-function repeat() {
-  var askForOperation = rs.question('What operation would you like to perform? ', {
-    limit: options,
-    limitMessage: 'That is not a valid operation.'
-  });
-
-  operator = askForOperation;
-
-  firstNumber = rs.questionInt('Please enter the first number: ',
-  {
-  limit: Number,
-  limitMessage: 'This is not a number.'
-  });
-
-  secondNumber = rs.questionInt('Please enter the second number: ',
-  {
-  limit: Number,
-  limitMessage: 'This is not a number.'
-  });
-
-  calcResult();
-  askAgain();
+  console.log(`The result is: ${result}`);
 }
 
-function calcResult() {
-  if (operator === '/') {
-    let result = firstNumber / secondNumber;
-    console.log('The result is: ' + result);
-  } 
-  else if (operator === '*') {
-    let result = firstNumber * secondNumber;
-    console.log('The result is: ' + result);
-  }
-  else if (operator === '+') {
-    let result = firstNumber + secondNumber;
-    console.log('The result is: ' + result);
-  }
-  else if (operator === '-') {
-    let result = firstNumber - secondNumber;
-    console.log('The result is: ' + result);
+while (true) {
+  operation();
+
+  const repeat = rs.keyInYN('Perform another operation? ');
+  if (!repeat) {
+    break;
   }
 }
 
-function askAgain() {
-  let anotherOperation = rs.keyInYN('Would you like to perform another operation? ')
-  if (anotherOperation === true) {
-    repeat();
-  } else {
-    console.log('Thank you for trying my calculator!');
-  }
-}
-
-calcResult();
-askAgain();
+console.log('Thanks for using the calculator!');
