@@ -18,27 +18,27 @@ function operation() {
     return;
   }
 
-let result;
-switch (operator) {
-  case '+':
-    result = firstNumber + secondNumber;
-    break;
-  case '-':
-    result = firstNumber - secondNumber;
-    break;
-  case '*':
-    result = firstNumber * secondNumber;
-    break;
-  case '/':
-    if (secondNumber === 0) {
-      console.log('Division by zero.');
+  let result;
+  switch (operator) {
+    case '+':
+      result = firstNumber + secondNumber;
+      break;
+    case '-':
+      result = firstNumber - secondNumber;
+      break;
+    case '*':
+      result = firstNumber * secondNumber;
+      break;
+    case '/':
+      if (secondNumber === 0) {
+        console.log('Division by zero.');
+        return;
+      }
+      result = firstNumber / secondNumber;
+      break;
+    default:
+      console.log('That is not a valid input.');
       return;
-    }
-    result = firstNumber / secondNumber;
-    break;
-  default:
-    console.log('That is not a valid input.');
-    return;
   }
 
   console.log(`The result is: ${result}`);
