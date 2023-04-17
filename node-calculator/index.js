@@ -1,20 +1,19 @@
 var rs = require('readline-sync');
 const availOperators = ['/','*','+','-'];
-const option = Number + availOperators + Number;
 
 function operation() {
   let operationPrompt = rs.question('Enter an operation with two numbers (e.g. 6 + 4): ');
-  const parts = operationPrompt.split(' ');
-  if (parts.length !== 3) {
+  const inputs = operationPrompt.split(' ');
+  if (inputs.length !== 3) {
     console.log('Invalid operation format!');
     return;
   }
 
-  const firstNumber = parseFloat(parts[0]);
-  const operator = parts[1];
-  const secondNumber = parseFloat(parts[2]);
+  const firstNumber = parseFloat(inputs[0]);
+  const operator = inputs[1];
+  const secondNumber = parseFloat(inputs[2]);
 
-  if (isNaN(firstNumber) || isNaN(secondNumber)) {
+  if (isNaN(firstNumber) || isNaN(secondNumber) || !availOperators.includes(operator)) {
     console.log('Invalid operation format!');
     return;
   }
