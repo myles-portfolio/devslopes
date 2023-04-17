@@ -19,7 +19,6 @@ function operation() {
     return;
   }
 
-
 let result;
 switch (operator) {
   case '+':
