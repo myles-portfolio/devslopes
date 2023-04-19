@@ -1,52 +1,46 @@
 var rs = require('readline-sync');
 const availOperators = ['/','*','+','-'];
 
-function operation() {
-  let operationPrompt = rs.question('Enter an operation with two numbers (e.g. 6 + 4): ');
-  const inputs = operationPrompt.split(' ');
-  if (inputs.length !== 3) {
-    console.log('Invalid operation format!');
-    return;
+function getOperator(limit) {
+  return rs.question('What operation would you like to perform? ', {
+  limit,
+  limitMessage: 'That is not a valid operation.'
+  });
+}
+
+const getAnyNumber = (order, operator = false) => {
+  const number = rs.questionInt(`Please enter the ${order} number: `, {
+    limit: Number,
+    limitMessage: 'This is not a number.'
+  });
+  if (operator === '/' && number === 0) {
+    console.log('You can\'t divide by zero.');
+    return getAnyNumber(order, operator);
+  } else {
+    return number;
   }
+};
 
-  const firstNumber = parseFloat(inputs[0]);
-  const operator = inputs[1];
-  const secondNumber = parseFloat(inputs[2]);
+function getValues(limit) {
+  const operator = getOperator(limit);
+  const firstNumber = getAnyNumber('first');
+  const secondNumber = getAnyNumber('second', operator);
+  return [operator, firstNumber, secondNumber];
+}
 
-  if (isNaN(firstNumber) || isNaN(secondNumber) || !availOperators.includes(operator)) {
-    console.log('Invalid operation format!');
-    return;
-  }
-
-  let result;
-  switch (operator) {
-    case '+':
-      result = firstNumber + secondNumber;
-      break;
-    case '-':
-      result = firstNumber - secondNumber;
-      break;
-    case '*':
-      result = firstNumber * secondNumber;
-      break;
-    case '/':
-      if (secondNumber === 0) {
-        console.log('Division by zero.');
-        return;
-      }
-      result = firstNumber / secondNumber;
-      break;
-    default:
-      console.log('That is not a valid input.');
-      return;
-  }
-
-  console.log(`The result is: ${result}`);
+function calculate(operator, firstNumber, secondNumber) {
+  const operations = {
+    '+': (a, b) => a + b,
+    '-': (a, b) => a - b,
+    '*': (a, b) => a * b,
+    '/': (a, b) => (a / b).toFixed(2),
+  };
+  return operations[operator](firstNumber, secondNumber);
 }
 
 while (true) {
-  operation();
-
+  const [operator, firstNumber, secondNumber] = getValues(availOperators);
+  console.log('The result is', calculate(operator, firstNumber, secondNumber));
   const repeat = rs.keyInYN('Perform another operation? ');
   if (!repeat) {
     break;
