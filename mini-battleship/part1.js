@@ -12,7 +12,7 @@ function startGame() {
   console.log(startPrompt);
 }
 
-function createShips(num, length) {
+function createFleet(num, length) {
   const fleet = {};
   const ship = {
     position: [],
@@ -38,7 +38,7 @@ function createBoard(rows, cols) {
 
 while (true) {
   startGame();
-  createShips(2, 1)
+  createFleet(2, 1)
   createBoard(3, 3);
   const repeat = rs.keyInYN('You have destroyed all battleships. Would you like to play again? Y/N ');
   if (!repeat) {
