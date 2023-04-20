@@ -1,7 +1,7 @@
 // Return all integers between 1 and any given max number.
 // Example: listNumbers(10)
 
-function listNumbers(max) {
+/*function listNumbers(max) {
   let int = 0;
 
   for (let i =  1; i <= max; i++) {
@@ -52,4 +52,35 @@ function century(year) {
 
 function century(year) {  
   return Math.ceil(year/100);
-}
+}*/
+
+const people = [
+  {
+    name: "Jon",
+    age: 30
+  },
+  {
+    name: "Julio",
+    age: 20
+  },
+  {
+    name: "Clayton",
+    age: 13
+  },
+  {
+    name: "Zab",
+    age: 22
+  },
+  {
+    name: "Myles",
+    age: 3
+  },
+  {
+    name: "Garrett",
+    age: 4
+  }
+]
+
+const answer = people.filter(person => person.name[0] === "J");
+
+console.log(answer)  
