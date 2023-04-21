@@ -1,10 +1,11 @@
-// TODO Prompt user to strike "Enter a location to strike (i.e.: 'A2'): "
+// *** CURRENT TASKS ***
+
 // TODO If there is a ship at that location the prompt will read, "Hit. You have sunk a battleship. 1 ship remaining."
 // TODO If there is not a ship at that location the prompt will read, "You have missed!"
 // TODO If you enter a location you have already guessed the prompt will read, "You have already picked this location. Miss!"
 
 //-----------------------------------------------------------------------------
-// *** CURRENT TASK ***
+// *** FUTURE TASKS ***
 
 // TODO Randomly place 2 battleships on game board:
   // // TODO Generate a random starting position for each ship on the board. You can use the Math.random() function to generate a random index for the row and column of the starting tile.
@@ -92,14 +93,23 @@ class Fleet {
 }
 
 
+function playerTurn() {
+  rs.question("Enter a location to strike i.e. 'A2': ", {
+      limit: /^[a-cA-C][1-3]$/,
+      limitMessage: 'Sorry, $<lastInput> is not allowed.'
+    });
+}
+
 
 // *** RUN THE GAME ***
 
 while (true) {
   startGame();
-  const game = new Game(3, 3, 2, 1);
-  console.log(game.gameBoard);
-  console.log(game.fleet);
+  new Game(3, 3, 2, 1);
+  //const game = 
+  //console.log(game.gameBoard);
+  //console.log(game.fleet);
+  playerTurn();
   const repeat = rs.keyInYN('You have destroyed all battleships. Would you like to play again? ');
   if (!repeat) {
     break;
