@@ -38,14 +38,37 @@ const combineArrays = (arr1, arr2) => [...arr1.slice(0, arr1.length), ...arr2.sl
 // => addEveryOther(4, 7, 3, 2, 10) // 17
 // => addEveryOther(2, 8, 3, 1) // 5
 
-const addEveryOther = (...args) => {
-  let sum = 0;
-  for(let i = 0; i <= args.length; i++) {
-    if (i % 2 === 0) {
-      sum += args[i];
-    }
-  }
-  return sum;
-}
+//const addEveryOther = (...args) => {
+//  let sum = 0;
+//  for(let i = 0; i <= args.length; i++) {
+//    if (i % 2 === 0) {
+//      sum += args[i];
+//    }
+//  }
+//  return sum;
+//}
 
-console.log(addEveryOther(4, 7, 3, 2, 10));
+//console.log(addEveryOther(4, 7, 3, 2, 10));
+
+// *** Spreading into a function
+
+const dogs = ['German Shepherd', 'Bulldog', 'Poodle'];
+const moreDogs = ['Labrador', 'Golden Retriever', 'Great Dane'];
+
+dogs.push(...moreDogs);
+//console.log(dogs);
+
+
+const greeting = (first, last) => console.log(`Hello ${first} ${last}`)
+const userName = ['John', 'Smith'];
+//greeting(...userName);
+
+
+const currencyConverter = (rate, ...amounts) => amounts.map(amount => rate * amount);
+const converted = currencyConverter(1.25, 5, 10, 23, 44, 87);
+//console.log(converted);
+
+const teams = ['You', 'Them', 'Jason', 'Nathan', 'Jared'];
+const [capt, coCapt, ...team] = teams;
+
+console.log(capt, coCapt, team);

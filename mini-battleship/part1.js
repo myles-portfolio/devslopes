@@ -1,6 +1,13 @@
+// TODO Prompt user to strike "Enter a location to strike (i.e.: 'A2'): "
+// TODO If there is a ship at that location the prompt will read, "Hit. You have sunk a battleship. 1 ship remaining."
+// TODO If there is not a ship at that location the prompt will read, "You have missed!"
+// TODO If you enter a location you have already guessed the prompt will read, "You have already picked this location. Miss!"
 
-// TODO Randomly place 2 battleships on game board
-  // TODO Generate a random starting position for each ship on the board. You can use the Math.random() function to generate a random index for the row and column of the starting tile.
+//-----------------------------------------------------------------------------
+// *** CURRENT TASK ***
+
+// TODO Randomly place 2 battleships on game board:
+  // // TODO Generate a random starting position for each ship on the board. You can use the Math.random() function to generate a random index for the row and column of the starting tile.
 
   // TODO Check if the ship can fit within the boundaries of the board from its starting position. For example, if the ship is of length 4 and its starting position is [2, 5], then you should check if there are 4 tiles horizontally or vertically from this position on the board.
 
@@ -9,10 +16,6 @@
   // TODO If the ship does not overlap with any existing ships, update the position key of the ship object to include all the tiles that the ship will occupy on the board.
 
   // TODO If the ship does overlap with an existing ship or does not fit within the boundaries of the board, generate a new random starting position for the ship and repeat the process from step 2.
-// TODO Prompt user to strike "Enter a location to strike (i.e.: 'A2'): "
-// TODO If there is a ship at that location the prompt will read, "Hit. You have sunk a battleship. 1 ship remaining."
-// TODO If there is not a ship at that location the prompt will read, "You have missed!"
-// TODO If you enter a location you have already guessed the prompt will read, "You have already picked this location. Miss!"
 
 var rs = require('readline-sync');
 
@@ -31,34 +34,42 @@ function createGameBoard(rowSize, colSize) {
 class Game {
   constructor(rowSize, colSize, numShips, shipLength) {
     this.gameBoard = createGameBoard(rowSize, colSize);
-    this.fleet = new Fleet(numShips, shipLength);
+    this.fleet = new Fleet(numShips, shipLength, this);
+    for (let i = 0; i < numShips; i++) {
+      this.fleet.addShip(shipLength, this);
+    }
   }
 }
 
 class Ship {
-  constructor(length) {
-    this.position = [];
+  constructor(length, randomTile) {
+    this.position = randomTile;
     this.hit = false;
     this.size = length;
   }
 }
 
 class Fleet {
-  constructor(numShips, shipLength) {
+  constructor(numShips, shipLength, game) {
     this.ships = [];
     this.totalHealth = 0;
-    
-    for (let ship of this.ships) {
-      this.totalHealth += ship.size;
-    }
+    this.game = game;
 
     for (let i = 0; i < numShips; i++) {
       this.addShip(shipLength);
     }
   }
 
+  getRandomTile() {
+    const board = this.game.gameBoard;
+    const randomSubArrayIndex = Math.floor(Math.random() * board.length);
+    const randomElementIndex = Math.floor(Math.random() * board[randomSubArrayIndex].length);
+    let randomTile = board[randomSubArrayIndex][randomElementIndex];
+    return randomTile;
+  }
+
   addShip(length) {
-    const ship = new Ship(length);
+    const ship = new Ship(length, this.getRandomTile());
     this.ships.push(ship);
     this.totalHealth += length;
   }
