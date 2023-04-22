@@ -1,8 +1,8 @@
 // *** CURRENT TASKS ***
 
-// TODO If there is a ship at that location the prompt will read, "Hit. You have sunk a battleship. 1 ship remaining."
-// TODO If there is not a ship at that location the prompt will read, "You have missed!"
-// TODO If you enter a location you have already guessed the prompt will read, "You have already picked this location. Miss!"
+  // TODO If the ship does not overlap with any existing ships, update the position key of the ship object to include all the tiles that the ship will occupy on the board.
+
+  // TODO If the ship does overlap with an existing ship or does not fit within the boundaries of the board, generate a new random starting position for the ship and repeat the process from step 2.
 
 //-----------------------------------------------------------------------------
 // *** FUTURE TASKS ***
@@ -13,10 +13,6 @@
   // TODO Check if the ship can fit within the boundaries of the board from its starting position. For example, if the ship is of length 4 and its starting position is [2, 5], then you should check if there are 4 tiles horizontally or vertically from this position on the board.
 
   // TODO If the ship fits within the boundaries of the board, check if it overlaps with any existing ships on the board. You can do this by checking if any of the tiles that the ship will occupy are already occupied by another ship.
-
-  // TODO If the ship does not overlap with any existing ships, update the position key of the ship object to include all the tiles that the ship will occupy on the board.
-
-  // TODO If the ship does overlap with an existing ship or does not fit within the boundaries of the board, generate a new random starting position for the ship and repeat the process from step 2.
 
 var rs = require('readline-sync');
 
@@ -93,23 +89,47 @@ class Fleet {
 }
 
 
-function playerTurn() {
-  rs.question("Enter a location to strike i.e. 'A2': ", {
+function playGame(game) {
+  let playerInput = rs.question("Enter a location to strike i.e. 'A2': ", {
       limit: /^[a-cA-C][1-3]$/,
       limitMessage: 'Sorry, $<lastInput> is not allowed.'
-    });
+  });
+
+  let hitShip = false; // flag to check if a ship was hit
+
+  game.fleet.ships.forEach(ship => {
+    if (ship.position === playerInput) {
+      if (!ship.hit) { // check if the ship has already been hit
+        hitShip = true;
+        ship.hit = true;
+        game.fleet.totalHealth--;
+        if (game.fleet.totalHealth > 1) {
+          console.log(`Hit. You have sunk a battleship. ${game.fleet.totalHealth} ships remaining.`);
+        } else if (game.fleet.totalHealth === 1) {
+          console.log(`Hit. You have sunk a battleship. 1 ship remaining.`);
+        }
+      } else {
+        hitShip = true;
+        console.log(`You have already picked this location. Miss!`);
+      }
+    }
+  });
+
+  if (!hitShip) {
+    console.log(`You have missed!`);
+  }
 }
+
 
 
 // *** RUN THE GAME ***
 
 while (true) {
   startGame();
-  new Game(3, 3, 2, 1);
-  //const game = 
-  //console.log(game.gameBoard);
-  //console.log(game.fleet);
-  playerTurn();
+  const game = new Game(3, 3, 2, 1);
+  while (game.fleet.totalHealth > 0) {
+    playGame(game); // Pass the game instance as an argument
+  }
   const repeat = rs.keyInYN('You have destroyed all battleships. Would you like to play again? ');
   if (!repeat) {
     break;
