@@ -14,6 +14,19 @@
   <title>folio</title>
 </head>
 <body>
+  <div class="theme-toggle-wrapper">
+    <div class="theme-toggle-body">
+      <span>Change Theme</span>
+      <div class="btn-group">
+        <button data-toggle="light" class="toggle-btn active">Light</button>
+        <button data-toggle="dark" class="toggle-btn">Dark</button>
+      </div>
+      <button class="theme-toggle-tab">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+    </div>
+  </div>
+
   <main class="site-wrapper">
     <header class="site-header">
       <nav class="navbar">
@@ -29,52 +42,87 @@
         </div>
       </nav>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg">
+      <div class="container">
+        <div class="hero-content">
+          <div class="code-icon">
+            <i class="fas fa-code"></i>
+          </div>
+          <h1>Code. Eat. Sleep.</h1>
+          <div class="sub-header">
+            I create meaningful solutions for your brands and products.
+            <br>
+            Give your customers the best experience possible.
+          </div>
+          <div class="btn btn-primary round-pill">
+            <a href="#" data-open="contact">Let's talk now</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio">
+      <div class="container search-container">
+        <label for="search">
+          <input autocomplete="off" id="search" type="text" class="search-input" placeholder="Search...">
+          <i class="fas fa-search"></i>
+        </label>
+      </div>
+      <ul class="portfolio-filter-nav ul-defaults-none">
+        <li class="filter-link">All Work</li>
+        <li class="filter-link">Web Development</li>
+        <li class="filter-link">App Development</li>
+        <li class="filter-link">UI Design</li>
+      </ul>
+    </section>
+
+  <!-- Modals -->
+  <!-- About Me Page -->
+    <div id="about" class="full-size-modal page-block" data-animation="zoomInOut">
+      <header class="modal-header">
+        <h3>ABOUT ME</h3>
+        <i class="fas fa-times" data-close></i>
+      </header>
+      <div class="modal-body">
+        <div class="img-wrapper">
+          <img src="./assets/images/img4.jpg" alt="headshot">
+        </div>
+        <div class="modal-body-text">
+          <h2>Myles Hobdy</h2>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, consectetur. Culpa illo atque laboriosam quia in deleniti aut ipsam ab perferendis, quibusdam aliquid non tempora incidunt molestiae eos omnis suscipit.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, praesentium adipisci. Qui atque doloremque iure illum quisquam consectetur veritatis pariatur dolorum, excepturi ut quaerat sapiente quidem odio! Dignissimos, ex tenetur.</p>
+          <div>
+          <div>Email Me:</div>
+          <a href="mailto:myles.hobdy@gmail.com">myles.hobdy@gmail.com</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  <!-- Contact Me Page -->
+    <div id="contact" class="full-size-modal page-block" data-animation="zoomInOut">
+      <header class="modal-header">
+        <h3>CONTACT ME</h3>
+        <i class="fas fa-times" data-close></i>
+      </header>
+      <div class="modal-body">
+        <div class="img-wrapper">
+          <img src="./assets/images/img4.jpg" alt="headshot">
+        </div>
+        <div class="modal-body-text">
+          <h2>Myles Hobdy</h2>
+          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, consectetur. Culpa illo atque laboriosam quia in deleniti aut ipsam ab perferendis, quibusdam aliquid non tempora incidunt molestiae eos omnis suscipit.</p>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, praesentium adipisci. Qui atque doloremque iure illum quisquam consectetur veritatis pariatur dolorum, excepturi ut quaerat sapiente quidem odio! Dignissimos, ex tenetur.</p>
+          <div>
+          <div>Email Me:</div>
+          <a href="mailto:myles.hobdy@gmail.com">myles.hobdy@gmail.com</a>
+        </div>
+        </div>
+      </div>
+    </div>
   </main>
-
-<!-- Modals -->
-<!-- About Me Page -->
-  <div id="about" class="full-size-modal page-block" data-animation="zoomInOut">
-    <header class="modal-header">
-      <h3>ABOUT ME</h3>
-      <i class="fas fa-times" data-close></i>
-    </header>
-    <div class="modal-body">
-      <div class="img-wrapper">
-        <img src="./assets/images/img4.jpg" alt="headshot">
-      </div>
-      <div class="modal-body-text">
-        <h2>Myles Hobdy</h2>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, consectetur. Culpa illo atque laboriosam quia in deleniti aut ipsam ab perferendis, quibusdam aliquid non tempora incidunt molestiae eos omnis suscipit.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, praesentium adipisci. Qui atque doloremque iure illum quisquam consectetur veritatis pariatur dolorum, excepturi ut quaerat sapiente quidem odio! Dignissimos, ex tenetur.</p>
-        <div>
-        <div>Email Me:</div>
-        <a href="mailto:myles.hobdy@gmail.com">myles.hobdy@gmail.com</a>
-      </div>
-      </div>
-    </div>
-  </div>
-<!-- Contact Me Page -->
-  <div id="contact" class="full-size-modal page-block" data-animation="zoomInOut">
-    <header class="modal-header">
-      <h3>CONTACT ME</h3>
-      <i class="fas fa-times" data-close></i>
-    </header>
-    <div class="modal-body">
-      <div class="img-wrapper">
-        <img src="./assets/images/img4.jpg" alt="headshot">
-      </div>
-      <div class="modal-body-text">
-        <h2>Myles Hobdy</h2>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum, consectetur. Culpa illo atque laboriosam quia in deleniti aut ipsam ab perferendis, quibusdam aliquid non tempora incidunt molestiae eos omnis suscipit.</p>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At, praesentium adipisci. Qui atque doloremque iure illum quisquam consectetur veritatis pariatur dolorum, excepturi ut quaerat sapiente quidem odio! Dignissimos, ex tenetur.</p>
-        <div>
-        <div>Email Me:</div>
-        <a href="mailto:myles.hobdy@gmail.com">myles.hobdy@gmail.com</a>
-      </div>
-      </div>
-    </div>
-  </div>
-
   <script src="./js/main.js"></script>
 </body>
 </html>

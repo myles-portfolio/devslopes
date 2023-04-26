@@ -36,6 +36,17 @@ h4 {
   margin-bottom: 0.25rem;
 }
 
+h1 {
+  font-size: 5rem;
+  letter-spacing: -2.5px;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: 3rem;
+  letter-spacing: -2px;
+}
+
 p { margin-top: 0; }
 button { outline: none; }
 
@@ -59,8 +70,7 @@ button { outline: none; }
 .btn {
   font-weight: 700;
   min-width: 175px;
-  display: inline-block;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
@@ -85,3 +95,10 @@ button:not(:disabled):not(.disabled) {
 }
 
 .round-pill { border-radius: 50rem;}
+
+.sub-header {
+  font-size: 1.3125rem;
+  line-height: 1.5;
+  padding-top: 1.25rem;
+  padding-bottom: 1.875rem;
+}
