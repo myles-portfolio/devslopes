@@ -12,12 +12,20 @@ const modalOpen = '[data-open]';
 const modalClose = '[data-close]';
 const isVisible = 'is-visible';
 
+const dataFilter = '[data-filter]';
+const dataPortfolio = '[data-card]';
+
 const root = document.documentElement;
 
 /* Theme */
 const toggleTheme = document.querySelector(themeTab);
 const toggler = document.querySelectorAll(toggleBtn);
 const currentTheme = localStorage.getItem(theme);
+
+/* Portfolio */
+const filterLinks = document.querySelectorAll(dataFilter);
+const portfolioCards = document.querySelectorAll(dataPortfolio);
+const searchBox = document.querySelector('#search');
 
 /* Modal */
 const openModal = document.querySelectorAll(modalOpen);
@@ -69,6 +77,35 @@ for (const toggle of toggler) {
     const themeType = this.dataset.toggle;
     setActive(toggle, toggleBtn);
     setTheme(themeType);
+  });
+};
+
+// Portfolio Search Box
+searchBox.addEventListener('keyup', (e) => {
+  const searchInput = e.target.value.toLowerCase().trim();
+  portfolioCards.forEach((card) => {
+    if (card.dataset.card.includes(searchInput)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';    
+    }
+  })
+});
+
+// Portfolio Filter
+for (const link of filterLinks) {
+  link.addEventListener('click', function() {
+    setActive(link, '.filter-link');
+    const filter = this.dataset.filter;
+    portfolioCards.forEach((card) => {
+      if (filter === 'all') {
+        card.style.display = 'block';
+      } else if (card.dataset.card === filter) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
   });
 };
 
