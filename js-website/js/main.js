@@ -171,3 +171,63 @@ function createPortfolioCard(type, imgURL, category, description) {
 const portfolioGrid = document.querySelector(".portfolio-grid");
 
 // portfolioGrid.appendChild(createPortfolioCard('ui', 'portfolio-3.jpg', 'UI Design', 'description'));
+
+function createProjectModal (id, title, imgURL, headline, paragraph1, paragraph2) {
+  const projectModal = document.createElement("div");
+  projectModal.id = id;
+  projectModal.classList.add("default-modal");
+  projectModal.setAttribute("data-animation", "slideInOutTop");
+
+  const modalContainer = document.createElement("div");
+  modalContainer.classList.add("modal-container");
+
+  const header = document.createElement("header");
+  header.classList.add("modal-header");
+
+  const h3 = document.createElement("h3");
+  h3.textContent = title;
+
+  const i = document.createElement("i");
+  i.classList.add("fas", "fa-times");
+  i.setAttribute("data-close", "");
+
+  header.appendChild(h3);
+  header.appendChild(i);
+
+  const body = document.createElement("div");
+  body.classList.add("modal-body");
+
+  const imgWrapper = document.createElement("div");
+  imgWrapper.classList.add("img-wrapper");
+
+  const img = document.createElement("img");
+  img.src = "./assets/images/" + imgURL;
+  img.alt = "portfolio image";
+
+  imgWrapper.appendChild(img);
+
+  const textWrapper = document.createElement("div");
+  textWrapper.classList.add("text-wrapper");
+
+  const p1 = document.createElement("p");
+  const strong = document.createElement("strong");
+  strong.textContent = headline;
+  p1.appendChild(strong);
+
+  const p2 = document.createElement("p");
+  p2.textContent = paragraph1;
+
+  const p3 = document.createElement("p");
+  p3.textContent = paragraph2;
+
+  textWrapper.appendChild(p1);
+  textWrapper.appendChild(p2);
+  textWrapper.appendChild(p3);
+  body.appendChild(imgWrapper);
+  body.appendChild(textWrapper);
+  modalContainer.appendChild(header);
+  modalContainer.appendChild(body);
+  projectModal.appendChild(modalContainer);
+
+  return projectModal;
+}
