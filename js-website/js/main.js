@@ -114,15 +114,28 @@ for (const modal of openModal) {
   modal.addEventListener('click', function() {
     const modalId = this.dataset.open;
     document.getElementById(modalId).classList.add(isVisible);
-  })
+  });
 };
 
 // Modal "Close Buttons"
 for (const modal of closeModal) {
   modal.addEventListener('click', function() {
     this.parentElement.parentElement.parentElement.classList.remove(isVisible);
-  })
+  });
 };
+
+// Modal
+document.addEventListener('click', (e) => {
+  if(e.target === document.querySelector('.default-modal.is-visible')) {
+    document.querySelector('.default-modal.is-visible').classList.remove(isVisible);
+  }
+});
+
+document.addEventListener('keyup', (e) => {
+  if(e.key === 'Escape') {
+    document.querySelector('.default-modal.is-visible').classList.remove(isVisible);
+  }
+});
 
 function createPortfolioCard(type, imgURL, category, description) {
   const pcWrapper = document.createElement('div');
