@@ -231,3 +231,10 @@ function createProjectModal (id, title, imgURL, headline, paragraph1, paragraph2
 
   return projectModal;
 }
+
+const card = document.querySelector('.pc-popup-box');
+
+card.addEventListener("click", function() {
+  const projectModal = createProjectModal(id, title, imgURL, headline, paragraph1, paragraph2);
+  document.body.appendChild(projectModal);
+});
