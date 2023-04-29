@@ -109,7 +109,7 @@ for (const link of filterLinks) {
   });
 };
 
-// Full-Size Modal "Open Buttons"
+// Modal "Open Buttons"
 for (const modal of openModal) {
   modal.addEventListener('click', function() {
     const modalId = this.dataset.open;
@@ -117,9 +117,44 @@ for (const modal of openModal) {
   })
 };
 
-// Full-Size Modal "Close Buttons"
+// Modal "Close Buttons"
 for (const modal of closeModal) {
   modal.addEventListener('click', function() {
-    this.parentElement.parentElement.classList.remove(isVisible);
+    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
   })
 };
+
+function createPortfolioCard(type, imgURL, category, description) {
+  const pcWrapper = document.createElement('div');
+  pcWrapper.classList.add('pc-wrapper');
+  pcWrapper.setAttribute('data-card', type);
+
+  const pcBody = document.createElement('div');
+  pcBody.classList.add('pc-body');
+
+  const image = document.createElement("img");
+  image.src = "./assets/images/" + imgURL;
+  image.alt = "portfolio icon";
+
+  const link = document.createElement("a");
+  link.href = "#";
+  link.classList.add("pc-popup-box");
+
+  const categoryDiv = document.createElement("div");
+  categoryDiv.textContent = category;
+
+  const descriptionDiv = document.createElement("h3");
+  descriptionDiv.textContent = description;
+
+  link.appendChild(categoryDiv);
+  link.appendChild(descriptionDiv);
+  pcBody.appendChild(image);
+  pcBody.appendChild(link);
+  pcWrapper.appendChild(pcBody);
+
+  return pcWrapper;
+}
+
+const portfolioGrid = document.querySelector(".portfolio-grid");
+
+// portfolioGrid.appendChild(createPortfolioCard('ui', 'portfolio-3.jpg', 'UI Design', 'description'));
