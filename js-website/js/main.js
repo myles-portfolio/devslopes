@@ -1,6 +1,4 @@
-import { projectsData } from "data.js";
-
-const projects = projectsData;
+import { projectsData } from "./data.js";
 
 const theme = 'theme';
 const dataTheme = 'data-theme';
@@ -141,102 +139,93 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
+// Add Portfolio Cards to Portfolio Grid
 function createPortfolioCards() {
-  const pcWrapper = document.createElement('div');
-  pcWrapper.classList.add('pc-wrapper');
-  pcWrapper.setAttribute('data-card', type);
+  const portfolioContainer = document.querySelector('.portfolio-grid');
 
-  const pcBody = document.createElement('div');
-  pcBody.classList.add('pc-body');
+  for (let i = 0; i < projectsData.length; i++) {
+    const { projectType, imgURL, category, title, modal } = projectsData[i];
+    const modalId = modal.id;
 
-  const image = document.createElement("img");
-  image.src = "./assets/images/" + imgURL;
-  image.alt = "portfolio icon";
+    const pcWrapper = document.createElement('div');
+    pcWrapper.classList.add('pc-wrapper');
+    pcWrapper.setAttribute('data-card', projectType);
 
-  const link = document.createElement("a");
-  link.href = "#";
-  link.classList.add("pc-popup-box");
+    const pcBody = document.createElement('div');
+    pcBody.classList.add('pc-body');
 
-  const categoryDiv = document.createElement("div");
-  categoryDiv.textContent = category;
+    const image = document.createElement("img");
+    image.src = "./assets/images/" + imgURL;
+    image.alt = "portfolio icon";
 
-  const titleDiv = document.createElement("h3");
-  titleDiv.textContent = title;
+    const link = document.createElement('div');
+    link.classList.add('pc-popup-box');
+    link.setAttribute('data-open', modalId);
 
-  link.appendChild(categoryDiv);
-  link.appendChild(titleDiv);
-  pcBody.appendChild(image);
-  pcBody.appendChild(link);
-  pcWrapper.appendChild(pcBody);
+    const categoryDiv = document.createElement("div");
+    categoryDiv.textContent = category;
 
-  return pcWrapper;
+    const titleDiv = document.createElement("h3");
+    titleDiv.textContent = title;
+
+    link.appendChild(categoryDiv);
+    link.appendChild(titleDiv);
+    pcBody.appendChild(image);
+    pcBody.appendChild(link);
+    pcWrapper.appendChild(pcBody);
+
+    portfolioContainer.appendChild(pcWrapper);
+  }
 }
+// Call
+createPortfolioCards()
 
-// portfolioGrid.appendChild(createPortfolioCard('ui', 'portfolio-3.jpg', 'UI Design', 'description'));
+// Create Project Modal
+function createProjectModal(project) {
+  const modalId = project.modal.id;
+  const modal = document.createElement('div');
+  modal.classList.add('default-modal');
+  modal.setAttribute('id', modalId);
+  modal.setAttribute('data-animation', 'slideInOutTop');
 
-function createProjectModal (id, title, imgURL, headline, paragraph1, paragraph2) {
-  const projectModal = document.createElement("div");
-  projectModal.id = id;
-  projectModal.classList.add("default-modal");
-  projectModal.setAttribute("data-animation", "slideInOutTop");
-
-  const modalContainer = document.createElement("div");
-  modalContainer.classList.add("modal-container");
-
-  const header = document.createElement("header");
-  header.classList.add("modal-header");
-
-  const h3 = document.createElement("h3");
-  h3.textContent = title;
-
-  const i = document.createElement("i");
-  i.classList.add("fas", "fa-times");
-  i.setAttribute("data-close", "");
-
-  header.appendChild(h3);
-  header.appendChild(i);
-
-  const body = document.createElement("div");
-  body.classList.add("modal-body");
-
-  const imgWrapper = document.createElement("div");
-  imgWrapper.classList.add("img-wrapper");
-
-  const img = document.createElement("img");
-  img.src = "./assets/images/" + imgURL;
-  img.alt = "portfolio image";
-
-  imgWrapper.appendChild(img);
-
-  const textWrapper = document.createElement("div");
-  textWrapper.classList.add("text-wrapper");
-
-  const p1 = document.createElement("p");
-  const strong = document.createElement("strong");
-  strong.textContent = headline;
-  p1.appendChild(strong);
-
-  const p2 = document.createElement("p");
-  p2.textContent = paragraph1;
-
-  const p3 = document.createElement("p");
-  p3.textContent = paragraph2;
-
-  textWrapper.appendChild(p1);
-  textWrapper.appendChild(p2);
-  textWrapper.appendChild(p3);
-  body.appendChild(imgWrapper);
-  body.appendChild(textWrapper);
-  modalContainer.appendChild(header);
-  modalContainer.appendChild(body);
-  projectModal.appendChild(modalContainer);
-
-  return projectModal;
+  const modalContent = `
+      <div class='modal-container'>
+        <header class='modal-header'>
+          <h3>${project.title}</h3>
+          <i class='fas fa-times' data-close></i>
+        </header>
+        <div class='modal-body'>
+          <div class='img-wrapper'>
+            <img src='./assets/images/${project.imgURL}' alt='portfolio-image'>
+          </div>
+          <div class='text-wrapper'>
+            <p>
+              <strong>${project.modal.headline}</strong>
+            </p>
+            <p>
+              ${project.modal.paragraph1}
+            </p>
+            <p>
+              ${project.modal.paragraph2}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+  modal.innerHTML = modalContent;
+  return modal;
 }
 
 const card = document.querySelector('.pc-popup-box');
 
-card.addEventListener("click", function() {
-  const projectModal = createProjectModal(id, title, imgURL, headline, paragraph1, paragraph2);
+// Build Project Modal Upon Click
+card.addEventListener('click', function() {
+  const dataOpen = this.getAttribute('data-open');
+  const project = projectsData.find(project => project.modal.id === dataOpen);
+
+  const projectModal = createProjectModal(project);
+
   document.body.appendChild(projectModal);
 });
+

@@ -1,6 +1,6 @@
 export const projectsData = [
   {
-    projectType: web, 
+    projectType: 'web', 
     imgURL: 'portfolio-1.jpg', 
     category: 'Web Development', 
     title: 'Food Website', 
@@ -12,7 +12,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: ui, 
+    projectType: 'ui', 
     imgURL: 'portfolio-2.jpg', 
     category: 'UI Design', 
     title: 'Great Design', 
@@ -24,7 +24,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: web, 
+    projectType: 'web', 
     imgURL: 'portfolio-3.jpg', 
     category: 'Web Development', 
     title: 'Skate Website', 
@@ -36,7 +36,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: app, 
+    projectType: 'app', 
     imgURL: 'portfolio-4.jpg', 
     category: 'App Development', 
     title: 'Productivity', 
@@ -48,7 +48,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: app, 
+    projectType: 'app', 
     imgURL: 'portfolio-5.jpg', 
     category: 'App Development', 
     title: 'Step Counter App', 
@@ -60,7 +60,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: app, 
+    projectType: 'app', 
     imgURL: 'portfolio-6.jpg', 
     category: 'App Development', 
     title: 'Todo App', 
@@ -72,7 +72,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: ui, 
+    projectType: 'ui', 
     imgURL: 'portfolio-7.jpg', 
     category: 'UI Design', 
     title: 'Cool Design', 
@@ -84,7 +84,7 @@ export const projectsData = [
     }
   },
   {
-    projectType: web, 
+    projectType: 'web', 
     imgURL: 'portfolio-8.jpg', 
     category: 'Web Development', 
     title: 'eCommerce Website', 
