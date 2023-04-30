@@ -139,46 +139,38 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-// Add Portfolio Cards to Portfolio Grid
-function createPortfolioCards() {
-  const portfolioContainer = document.querySelector('.portfolio-grid');
+const projectsContainer = document.querySelector(".portfolio-grid");
 
-  for (let i = 0; i < projectsData.length; i++) {
-    const { projectType, imgURL, category, title, modal } = projectsData[i];
-    const modalId = modal.id;
+function createPortfolioCard(project) {
+  const card = document.createElement("div");
+  card.classList.add("pc-wrapper");
+  card.setAttribute("data-card", project.projectType);
 
-    const pcWrapper = document.createElement('div');
-    pcWrapper.classList.add('pc-wrapper');
-    pcWrapper.setAttribute('data-card', projectType);
+  const cardBody = document.createElement("div");
+  cardBody.classList.add("pc-body");
 
-    const pcBody = document.createElement('div');
-    pcBody.classList.add('pc-body');
+  const cardImage = document.createElement("img");
+  cardImage.setAttribute("src", `./assets/images/${project.imgURL}`);
+  cardImage.setAttribute("alt", "portfolio icon");
+  cardBody.appendChild(cardImage);
 
-    const image = document.createElement("img");
-    image.src = "./assets/images/" + imgURL;
-    image.alt = "portfolio icon";
+  const cardPopupBox = document.createElement("div");
+  cardPopupBox.classList.add("pc-popup-box");
+  cardPopupBox.setAttribute("data-open", project.modal.id);
 
-    const link = document.createElement('div');
-    link.classList.add('pc-popup-box');
-    link.setAttribute('data-open', modalId);
+  const cardPopupBoxCategory = document.createElement("div");
+  cardPopupBoxCategory.textContent = project.category;
+  cardPopupBox.appendChild(cardPopupBoxCategory);
 
-    const categoryDiv = document.createElement("div");
-    categoryDiv.textContent = category;
+  const cardPopupBoxTitle = document.createElement("h3");
+  cardPopupBoxTitle.textContent = project.title;
+  cardPopupBox.appendChild(cardPopupBoxTitle);
 
-    const titleDiv = document.createElement("h3");
-    titleDiv.textContent = title;
+  cardBody.appendChild(cardPopupBox);
+  card.appendChild(cardBody);
 
-    link.appendChild(categoryDiv);
-    link.appendChild(titleDiv);
-    pcBody.appendChild(image);
-    pcBody.appendChild(link);
-    pcWrapper.appendChild(pcBody);
-
-    portfolioContainer.appendChild(pcWrapper);
-  }
+  return card;
 }
-// Call
-createPortfolioCards()
 
 // Create Project Modal
 function createProjectModal(project) {
@@ -196,7 +188,7 @@ function createProjectModal(project) {
         </header>
         <div class='modal-body'>
           <div class='img-wrapper'>
-            <img src='./assets/images/${project.imgURL}' alt='portfolio-image'>
+            <img src='./assets/images/portfolio-1.jpg' alt='portfolio-image'>
           </div>
           <div class='text-wrapper'>
             <p>
@@ -217,15 +209,18 @@ function createProjectModal(project) {
   return modal;
 }
 
-const card = document.querySelector('.pc-popup-box');
+function loadProjects() {
+  projectsData.forEach((project) => {
+    const card = createPortfolioCard(project);
+    const modal = createProjectModal(project);
 
-// Build Project Modal Upon Click
-card.addEventListener('click', function() {
-  const dataOpen = this.getAttribute('data-open');
-  const project = projectsData.find(project => project.modal.id === dataOpen);
+    card.addEventListener("click", function () {
+      document.body.appendChild(modal);
+    });
 
-  const projectModal = createProjectModal(project);
+    projectsContainer.appendChild(card);
+  });
+}
 
-  document.body.appendChild(projectModal);
-});
+loadProjects();
 
