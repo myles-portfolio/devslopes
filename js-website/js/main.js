@@ -1,3 +1,7 @@
+import { projectsData } from "data.js";
+
+const projects = projectsData;
+
 const theme = 'theme';
 const dataTheme = 'data-theme';
 const themeTab = '.theme-toggle-tab';
@@ -137,7 +141,7 @@ document.addEventListener('keyup', (e) => {
   }
 });
 
-function createPortfolioCard(type, imgURL, category, description) {
+function createPortfolioCards() {
   const pcWrapper = document.createElement('div');
   pcWrapper.classList.add('pc-wrapper');
   pcWrapper.setAttribute('data-card', type);
@@ -156,19 +160,17 @@ function createPortfolioCard(type, imgURL, category, description) {
   const categoryDiv = document.createElement("div");
   categoryDiv.textContent = category;
 
-  const descriptionDiv = document.createElement("h3");
-  descriptionDiv.textContent = description;
+  const titleDiv = document.createElement("h3");
+  titleDiv.textContent = title;
 
   link.appendChild(categoryDiv);
-  link.appendChild(descriptionDiv);
+  link.appendChild(titleDiv);
   pcBody.appendChild(image);
   pcBody.appendChild(link);
   pcWrapper.appendChild(pcBody);
 
   return pcWrapper;
 }
-
-const portfolioGrid = document.querySelector(".portfolio-grid");
 
 // portfolioGrid.appendChild(createPortfolioCard('ui', 'portfolio-3.jpg', 'UI Design', 'description'));
 
