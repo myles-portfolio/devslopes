@@ -101,3 +101,36 @@
   outline: none;
   background: transparent;
 }
+
+@media (max-width: 991px) {
+  #about .img-wrapper,
+  #about .about-text {
+    flex: initial;
+    margin: 0 auto;
+  }
+
+  .page-block { text-align: center; }
+  .contact-form { margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --marquee-width: 100%;
+    --marquee-elems-displayed: 3;
+  }
+
+  .marquee:before,
+  .marquee:after {
+    width: 5rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 474px) {
+  :root {
+    --marquee-elems-displayed: 2;
+  }
+}

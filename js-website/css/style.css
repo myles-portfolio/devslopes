@@ -306,7 +306,7 @@
   display: flex;
   justify-content: center;
   height: 250px;
-  margin: 200px 0;
+  margin: 200px 0 50px;
 }
 
 .test-carousel .test-item {
@@ -390,7 +390,7 @@
   transition: all 0.35s ease-in;
   visibility: hidden;
   opacity: 0;
-  z-index: 1000;
+  z-index: 99;
 }
 
 .default-modal .modal-header h3 {
