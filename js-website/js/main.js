@@ -147,7 +147,6 @@ function createPortfolioCard(project) {
 
 // Create Project Modal
 function createProjectModal(project) {
-  console.log('Function is being called!');
   const modalId = project.modal.id;
   const modal = document.createElement('div');
   modal.classList.add('default-modal');
@@ -193,6 +192,7 @@ function createProjectModal(project) {
 }
 
 const portfolioGrid = document.querySelector('.portfolio-grid');
+const projectCards = document.querySelectorAll('.pc-wrapper');
 
 function loadProjects() {
   projectsData.forEach((project) => {
@@ -224,6 +224,15 @@ function loadProjects() {
   });
 };
 
+  // Open project modals
+  portfolioGrid.addEventListener('click', (e) => {
+    const popupBox = e.target.closest('.pc-popup-box');
+    const modalId = popupBox.dataset.open;
+    const project = projectsData.find(p => p.modal.id === modalId);
+    const modal = createProjectModal(project);
+    document.body.appendChild(modal);
+  });
+
 function portfolioFilter(filter, projectCards) {
   setActive(document.querySelector(`[data-filter=${filter}]`), '.filter-link');
   projectCards.forEach((card) => {
@@ -239,37 +248,5 @@ function portfolioFilter(filter, projectCards) {
 }
 
 loadProjects();
-portfolioFilter('all');
+portfolioFilter('all', projectCards);
 
-
-portfolioGrid.addEventListener('click', (e) => {
-  const popupBox = e.target.closest('.pc-popup-box');
-  const modalId = popupBox.dataset.open;
-  const project = projectsData.find(p => p.modal.id === modalId);
-  const modal = createProjectModal(project);
-  document.body.appendChild(modal);
-});
-
-
-
-
-
- 
-
-  // Filter Portfolio Projects
-  /*for (const link of filterLinks) {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      setActive(link, '.filter-link');
-      const filter = this.dataset.filter;
-      portfolioCards.forEach((card) => {
-        if (filter === 'all') {
-          card.style.display = 'block';
-        } else if (card.dataset.card === filter) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  }*/
