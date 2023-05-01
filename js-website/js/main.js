@@ -15,7 +15,6 @@ const modalClose = '[data-close]';
 const $isVisible = 'is-visible';
 
 const dataFilter = '[data-filter]';
-const dataPortfolio = '[data-card]';
 
 const root = document.documentElement;
 
@@ -26,7 +25,8 @@ const currentTheme = localStorage.getItem(theme);
 
 /* Portfolio */
 const filterLinks = document.querySelectorAll(dataFilter);
-const portfolioCards = document.querySelectorAll(dataPortfolio);
+const portfolioGrid = document.querySelector('.portfolio-grid');
+const projectCards = document.querySelectorAll('.pc-wrapper');
 const searchBox = document.querySelector('#search');
 
 /* Modal */
@@ -190,9 +190,6 @@ function createProjectModal(project) {
 
   return modal;
 }
-
-const portfolioGrid = document.querySelector('.portfolio-grid');
-const projectCards = document.querySelectorAll('.pc-wrapper');
 
 function loadProjects() {
   projectsData.forEach((project) => {
