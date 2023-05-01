@@ -448,10 +448,6 @@
   height: 200px;
 }
 
-.modal-body-text {
-  display: block;
-}
-
 [data-animation="zoomInOut"].full-size-modal {
   transform: scale(0.2);
 }

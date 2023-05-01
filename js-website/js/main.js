@@ -162,7 +162,7 @@ function createProjectModal(project) {
         </header>
         <div class='modal-body'>
           <div class='img-wrapper'>
-            <img src='./assets/images/portfolio-1.jpg' alt='portfolio-image'>
+            <img src='./assets/images/${project.imgURL}' alt='portfolio-image'>
           </div>
           <div class='text-wrapper'>
             <p>
@@ -199,7 +199,7 @@ function loadProjects() {
 
   const projectCards = document.querySelectorAll('.pc-wrapper');
 
-  // Portfolio Filter
+  // Portfolio Filter Trigger
   for (const link of filterLinks) {
     link.addEventListener('click', function() {
       setActive(link, '.filter-link');
@@ -230,6 +230,7 @@ function loadProjects() {
     document.body.appendChild(modal);
   });
 
+// Portfolio Filter Handler
 function portfolioFilter(filter, projectCards) {
   setActive(document.querySelector(`[data-filter=${filter}]`), '.filter-link');
   projectCards.forEach((card) => {
@@ -247,3 +248,12 @@ function portfolioFilter(filter, projectCards) {
 loadProjects();
 portfolioFilter('all', projectCards);
 
+// Marquee Continuous Animation
+const displayedElems = getComputedStyle(root).getPropertyValue('--marquee-elems-displayed');
+const marqueeContent = document.querySelector('ul.marquee-content');
+
+root.style.setProperty('--marquee-elems', marqueeContent.children.length);
+
+for (let i = 0; i < displayedElems; i++) {
+  marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
