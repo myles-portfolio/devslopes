@@ -10,9 +10,10 @@ const light = 'light';
 const open = 'open';
 const active = 'active';
 
+const $projectId = '[project-id]';
 const modalOpen = '[data-open]';
 const modalClose = '[data-close]';
-const isVisible = 'is-visible';
+const $isVisible = 'is-visible';
 
 const dataFilter = '[data-filter]';
 const dataPortfolio = '[data-card]';
@@ -102,7 +103,7 @@ for (const link of filterLinks) {
     portfolioCards.forEach((card) => {
       if (filter === 'all') {
         card.style.display = 'block';
-      } else if (card.dataset.card === filter) {
+      } else if (card.dataset.item === filter) {
         card.style.display = 'block';
       } else {
         card.style.display = 'none';
@@ -111,40 +112,50 @@ for (const link of filterLinks) {
   });
 };
 
-// Modal "Open Buttons"
+// Modal "Open"
 for (const modal of openModal) {
-  modal.addEventListener('click', function() {
-    const modalId = this.dataset.open;
-    document.getElementById(modalId).classList.add(isVisible);
+  modal.addEventListener('click', function(e) {
+    if (e.target.classList.contains('pc-popup-box')) {
+      console.log('Hit!');
+      const modalId = this.dataset.open;
+      const project = projectsData.find(p => p.modal.id === modalId);
+      const modal = createProjectModal(project);
+      console.log(modal);
+      return modal;
+    } else {
+      const modalId = this.dataset.open;
+      document.getElementById(modalId).classList.add($isVisible);
+    }
   });
 };
 
 // Modal "Close Buttons"
 for (const modal of closeModal) {
   modal.addEventListener('click', function() {
-    this.parentElement.parentElement.parentElement.classList.remove(isVisible);
+    this.parentElement.parentElement.parentElement.classList.remove($isVisible);
   });
 };
 
 // Modal
 document.addEventListener('click', (e) => {
   if(e.target === document.querySelector('.default-modal.is-visible')) {
-    document.querySelector('.default-modal.is-visible').classList.remove(isVisible);
+    document.querySelector('.default-modal.is-visible').classList.remove($isVisible);
   }
 });
 
 document.addEventListener('keyup', (e) => {
   if(e.key === 'Escape') {
-    document.querySelector('.default-modal.is-visible').classList.remove(isVisible);
+    document.querySelector('.default-modal.is-visible').classList.remove($isVisible);
   }
 });
 
-const projectsContainer = document.querySelector(".portfolio-grid");
+const portfolioContainer = document.querySelector(".portfolio-grid");
 
 function createPortfolioCard(project) {
   const card = document.createElement("div");
   card.classList.add("pc-wrapper");
   card.setAttribute("data-card", project.projectType);
+  card.setAttribute("project-id", project.modal.id);
 
   const cardBody = document.createElement("div");
   cardBody.classList.add("pc-body");
@@ -168,15 +179,18 @@ function createPortfolioCard(project) {
 
   cardBody.appendChild(cardPopupBox);
   card.appendChild(cardBody);
+  portfolioContainer.appendChild(card);
 
   return card;
 }
 
 // Create Project Modal
 function createProjectModal(project) {
+  console.log('Function is being called!');
   const modalId = project.modal.id;
   const modal = document.createElement('div');
   modal.classList.add('default-modal');
+  modal.classList.add($isVisible);
   modal.setAttribute('id', modalId);
   modal.setAttribute('data-animation', 'slideInOutTop');
 
@@ -205,22 +219,26 @@ function createProjectModal(project) {
       </div>
     </div>
   `;
+
   modal.innerHTML = modalContent;
+  document.body.appendChild(modal); 
+
+  const closeButton = modal.querySelector('[data-close]');
+  closeButton.addEventListener('click', function() {
+  modal.classList.remove($isVisible);
+});
+
   return modal;
 }
+
+const portfolioGrid = document.querySelector('.portfolio-grid');
 
 function loadProjects() {
   projectsData.forEach((project) => {
     const card = createPortfolioCard(project);
-    const modal = createProjectModal(project);
 
-    card.addEventListener("click", function () {
-      document.body.appendChild(modal);
-    });
-
-    projectsContainer.appendChild(card);
+    portfolioGrid.appendChild(card);
   });
 }
 
 loadProjects();
-
