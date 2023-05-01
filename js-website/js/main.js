@@ -10,7 +10,6 @@ const light = 'light';
 const open = 'open';
 const active = 'active';
 
-const $projectId = '[project-id]';
 const modalOpen = '[data-open]';
 const modalClose = '[data-close]';
 const $isVisible = 'is-visible';
@@ -83,49 +82,11 @@ for (const toggle of toggler) {
   });
 };
 
-// Portfolio Search Box
-searchBox.addEventListener('keyup', (e) => {
-  const searchInput = e.target.value.toLowerCase().trim();
-  portfolioCards.forEach((card) => {
-    if (card.dataset.card.includes(searchInput)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';    
-    }
-  })
-});
-
-// Portfolio Filter
-for (const link of filterLinks) {
-  link.addEventListener('click', function() {
-    setActive(link, '.filter-link');
-    const filter = this.dataset.filter;
-    portfolioCards.forEach((card) => {
-      if (filter === 'all') {
-        card.style.display = 'block';
-      } else if (card.dataset.item === filter) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  });
-};
-
-// Modal "Open"
+// Modal "Open Buttons"
 for (const modal of openModal) {
-  modal.addEventListener('click', function(e) {
-    if (e.target.classList.contains('pc-popup-box')) {
-      console.log('Hit!');
-      const modalId = this.dataset.open;
-      const project = projectsData.find(p => p.modal.id === modalId);
-      const modal = createProjectModal(project);
-      console.log(modal);
-      return modal;
-    } else {
-      const modalId = this.dataset.open;
-      document.getElementById(modalId).classList.add($isVisible);
-    }
+  modal.addEventListener('click', function() {
+    const modalId = this.dataset.open;
+    document.getElementById(modalId).classList.add($isVisible);
   });
 };
 
@@ -236,9 +197,79 @@ const portfolioGrid = document.querySelector('.portfolio-grid');
 function loadProjects() {
   projectsData.forEach((project) => {
     const card = createPortfolioCard(project);
-
     portfolioGrid.appendChild(card);
   });
+
+  const projectCards = document.querySelectorAll('.pc-wrapper');
+
+  // Portfolio Filter
+  for (const link of filterLinks) {
+    link.addEventListener('click', function() {
+      setActive(link, '.filter-link');
+      const filter = this.dataset.filter;
+      portfolioFilter(filter, projectCards);
+    });
+  };
+  
+  // Portfolio Search
+  searchBox.addEventListener('keyup', (e) => {
+    const searchInput = e.target.value.toLowerCase().trim();
+    projectCards.forEach((card) => {
+      if (card.dataset.card.includes(searchInput)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';    
+      }
+    })
+  });
+};
+
+function portfolioFilter(filter, projectCards) {
+  setActive(document.querySelector(`[data-filter=${filter}]`), '.filter-link');
+  projectCards.forEach((card) => {
+    if (filter === 'all') {
+      card.style.display = 'block';
+    } else if (card.dataset.card === filter) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  portfolioGrid.scrollIntoView({ behavior: 'smooth' });
 }
 
 loadProjects();
+portfolioFilter('all');
+
+
+portfolioGrid.addEventListener('click', (e) => {
+  const popupBox = e.target.closest('.pc-popup-box');
+  const modalId = popupBox.dataset.open;
+  const project = projectsData.find(p => p.modal.id === modalId);
+  const modal = createProjectModal(project);
+  document.body.appendChild(modal);
+});
+
+
+
+
+
+ 
+
+  // Filter Portfolio Projects
+  /*for (const link of filterLinks) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      setActive(link, '.filter-link');
+      const filter = this.dataset.filter;
+      portfolioCards.forEach((card) => {
+        if (filter === 'all') {
+          card.style.display = 'block';
+        } else if (card.dataset.card === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }*/
