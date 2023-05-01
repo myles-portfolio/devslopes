@@ -144,6 +144,7 @@
   position: absolute;
   right: 10px;
   font-weight: 700;
+  color: var(--clr-text-base);
 }
 
 .search-input:focus {
