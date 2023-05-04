@@ -8,7 +8,7 @@
 }
 
 .theme-toggle-body {
-  background-color: #495fef;
+  background-color: #ff7d15;
   border: transparent;
   max-width: 185px;
   padding: 15px 13px;
@@ -37,7 +37,7 @@
   width: 30px;
   height: 50px;
   border: 0;
-  background-color: #495fef;
+  background-color: #ff7d15;
   color: #fff;
   border-radius: 10px 0 0 10px;
   left: 1px;
@@ -76,7 +76,7 @@
 }
 
 .theme-toggle-body .btn-group .toggle-btn.active {
-  background-color: #ced4e7;
+  background-color: #e6d7c1;
 }
 
 .theme-toggle-wrapper.open {
@@ -106,13 +106,33 @@
   text-transform: lowercase;
 }
 
+.hero.container {
+  max-width: 1380px;
+}
+
+.hero-bg .hero {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.hero .img-wrapper {
+  margin-right: 5rem;
+}
+
+.hero-img {
+  max-width: 600px;
+}
+
 .hero-content {
-  text-align: center;
+  text-align: left;
   padding: 5.5rem 0;
 }
 
 .code-icon {
-  background-color: #da5252;
+  background-color: #ff7d15;
   padding: 1.25rem 1.5rem;
   color: var(--clr-text);
   border-radius: 50rem;
@@ -149,10 +169,10 @@
 
 .search-input:focus {
   outline: none;
-  border-color: #4dabf7;
+  border-color: #ff7d15;
   box-shadow: 
     inset 0 1px 1px rgba(0, 0, 0, 0.0125), 
-    0 0 8px rgba(34, 139, 230, 0.5);
+    0 0 8px rgba(230, 112, 34, 0.5);
 }
 
 .portfolio-filter-nav {
@@ -174,7 +194,7 @@
 }
 
 .portfolio-filter-nav .filter-link.active {
-  color: #495fef;
+  color: #ff7d15;
 }
 
 .portfolio-grid {
@@ -369,6 +389,14 @@
 
 .test-author .details .company {
   color: #6b6b6b;
+}
+
+.footer-text {
+  text-align: center;
+}
+
+.footer-text p {
+  margin: 0;
 }
 
 .default-modal {

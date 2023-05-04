@@ -32,7 +32,7 @@ body {
 }
 
 a {
-  color: #495fef;
+  color: #ff7d15;
   text-decoration: none;
   background-color: transparent;
 }
@@ -47,7 +47,7 @@ h4 {
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   letter-spacing: -2.5px;
   line-height: 1.05;
 }
@@ -100,8 +100,8 @@ button:not(:disabled):not(.disabled) {
 .btn-primary,
 .btn-primary a {
   color: #fff;
-  background-color: #495fef;
-  border-color: #495fef;
+  background-color: #ff7d15;
+  border-color: #ff7d15;
 }
 
 .round-pill { border-radius: 50rem;}
