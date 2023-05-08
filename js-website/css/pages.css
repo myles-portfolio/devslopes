@@ -20,6 +20,7 @@
 
 .about-text {
   flex: 1;
+  max-width: 60%;
 }
 
 .about-text p,
@@ -132,5 +133,9 @@
 @media (max-width: 474px) {
   :root {
     --marquee-elems-displayed: 2;
+  }
+
+  .full-size-modal {
+    overflow-y: auto;
   }
 }

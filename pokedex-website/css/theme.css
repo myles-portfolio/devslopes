@@ -1,0 +1,16 @@
+:root {
+  --bg: #242424;
+  --bg-panel: #ebebeb;
+  --bg-nav: #181818;
+  --clr-headings: #fff;
+  --clr-text: #1a1a1a;
+  --clr-text-nav: #fff;
+  --border: #181818;
+
+  --red: #FF0000;
+  --dark-red: #CC0000;
+  --cerulean-blue: #3B4CCA;
+  --golden-yellow: #FFDE00;
+  --gold-foil: #B3A125;
+  --white: #ffffff;
+}
