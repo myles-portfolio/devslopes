@@ -18,6 +18,17 @@ const dataFilter = '[data-filter]';
 
 const root = document.documentElement;
 
+/* Nav */
+
+const navButton = document.querySelector('button[aria-expanded]');
+
+function toggleNav({ target }) {
+  const expanded = target.getAttribute('aria-expanded') === 'true' || false;
+  navButton.setAttribute('aria-expanded', !expanded);
+}
+
+navButton.addEventListener('click', toggleNav);
+
 /* Theme */
 const toggleTheme = document.querySelector(themeTab);
 const toggler = document.querySelectorAll(toggleBtn);

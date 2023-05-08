@@ -117,6 +117,10 @@
     flex-wrap: wrap;
   }
 
+  .hero .img-wrapper {
+    margin: 0;
+  }
+
   .hero-content {
     text-align: center;
     padding-top: 0;
@@ -135,8 +139,6 @@
   }
 
   .about-text {
-
-    overflow-y: auto;
     max-width: 100%;
   }
 }
@@ -144,6 +146,10 @@
 @media (max-width: 474px) {
   :root {
     --marquee-elems-displayed: 2;
+  }
+
+    .hero-img {
+    max-width: 450px;
   }
 
   .modal-body {
