@@ -112,6 +112,14 @@
 
   .page-block { text-align: center; }
   .contact-form { margin: 0 auto; }
+
+  .flex-container {
+    flex-wrap: wrap;
+  }
+
+  .hero-content {
+    text-align: center;
+  }
 }
 
 @media (max-width: 768px) {
@@ -133,9 +141,5 @@
 @media (max-width: 474px) {
   :root {
     --marquee-elems-displayed: 2;
-  }
-
-  .full-size-modal {
-    overflow-y: auto;
   }
 }
