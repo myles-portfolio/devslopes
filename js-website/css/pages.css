@@ -113,12 +113,13 @@
   .page-block { text-align: center; }
   .contact-form { margin: 0 auto; }
 
-  .flex-container {
+  .hero.container {
     flex-wrap: wrap;
   }
 
   .hero-content {
     text-align: center;
+    padding-top: 0;
   }
 }
 
@@ -133,13 +134,19 @@
     width: 5rem;
   }
 
-  .about-text p {
-    font-size: 1rem;
+  .about-text {
+
+    overflow-y: auto;
+    max-width: 100%;
   }
 }
 
 @media (max-width: 474px) {
   :root {
     --marquee-elems-displayed: 2;
+  }
+
+  .modal-body {
+    overflow-y: auto;
   }
 }
