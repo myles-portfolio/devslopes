@@ -7,10 +7,22 @@
   --clr-text-nav: #fff;
   --border: #181818;
 
-  --red: #FF0000;
   --dark-red: #CC0000;
   --cerulean-blue: #3B4CCA;
   --golden-yellow: #FFDE00;
   --gold-foil: #B3A125;
   --white: #ffffff;
+
+  --fire: #FF0000;
+  --grass: #21a833;
+  --water: #1d2dc4;
+  --bug: #7cb80d;
+  --normal: #141414;
+  --electric: #ffe02e;
+  --poison: #8e3add;
+  --ground: #6b3423;
+  --fighting: #fff;
+  --rock: #4e4e4e;
+  --psychic: #8976f5;
+  --ghost: #ced0d391;
 }
