@@ -33,6 +33,33 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
       // Add the card top element to the card
       card.appendChild(cardTop);
 
+      // Add the tooltip event listener
+      cardTop.addEventListener('mouseover', () => {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tooltip';
+
+        // Create tooltip text
+        const tooltipText = document.createElement('div');
+        tooltipText.className = 'tooltip-text'
+        tooltip.textContent = `Height: ${pokemonData.height}\nWeight: ${pokemonData.weight}\nBase Experience: ${pokemonData.base_experience}\nHP: ${pokemonData.stats[0].base_stat}\nAttack: ${pokemonData.stats[1].base_stat}\nDefense: ${pokemonData.stats[2].base_stat}`;
+        tooltip.appendChild(tooltipText);
+
+        // Create favorite button
+        const favoriteButton = document.createElement('button');
+        favoriteButton.textContent = 'Favorite';
+        favoriteButton.className = 'favorite-btn';
+        tooltip.appendChild(favoriteButton);
+
+        cardTop.appendChild(tooltip);
+      });
+
+      cardTop.addEventListener('mouseout', () => {
+        const tooltip = cardTop.querySelector('.tooltip');
+        if (tooltip) {
+          cardTop.removeChild(tooltip);
+        }
+      });  
+
       // Create the card bottom element and set its attributes
       const cardBottom = document.createElement('div');
       cardBottom.className = 'card-bottom';
@@ -62,3 +89,4 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
       cardsContainer.appendChild(card);
     });
   });
+

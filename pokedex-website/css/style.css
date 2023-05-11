@@ -8,7 +8,8 @@
 .navbar .navbar-links { margin-left: auto; }
 .ultra-top-menu { display: flex; }
 
-.ultra-top-menu .nav-item a:active { color: var(--cerulean-blue)}
+.ultra-top-menu .nav-item a:active,
+.ultra-top-menu .nav-item a:focus { color: var(--cerulean-blue)}
 
 .ultra-top-menu .nav-item,
 .site-footer p {
@@ -197,6 +198,10 @@
   background: var(--psychic);
 }
 
+.card-bottom .type.fairy {
+  background: var(--fairy);
+}
+
 .card-bottom .type.ghost {
   background: var(--ghost);
   color: var(--clr-text);
@@ -212,8 +217,9 @@
   font-size: 14px;
   line-height: 1.5;
   font-weight: 600;
+  text-align: center;
   white-space: pre-line;
-  width: 100%;
+  width: 200px;
   height: 200px;
 }
 
@@ -244,4 +250,18 @@
 
 .pagination button:nth-child(1) {
     padding-left: 10px;
+}
+
+.favorite-btn {
+  background-color: var(--cerulean-blue);
+  border: none;
+  outline: none;  
+  color: var(--white);
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  cursor: pointer;
 }
