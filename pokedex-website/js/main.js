@@ -41,7 +41,7 @@ function createCards(pokemon) {
       card.appendChild(cardTop);
 
       // Add the tooltip event listener
-      cardTop.addEventListener('mouseover', () => {
+      cardTop.addEventListener('mouseenter', () => {
         const tooltip = document.createElement('div');
         tooltip.className = 'tooltip';
 
@@ -54,7 +54,7 @@ function createCards(pokemon) {
         cardTop.appendChild(tooltip);
       });
 
-      cardTop.addEventListener('mouseout', () => {
+      cardTop.addEventListener('mouseleave', () => {
         const tooltip = cardTop.querySelector('.tooltip');
         if (tooltip) {
           cardTop.removeChild(tooltip);

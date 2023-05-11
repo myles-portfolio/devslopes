@@ -1,4 +1,5 @@
 const cardsContainer = document.querySelector('.grid-container');
+const favoriteData = [];
 
 // Make a GET request to the PokeAPI for the first 30 Pokemon
 fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
@@ -34,7 +35,7 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
       card.appendChild(cardTop);
 
       // Add the tooltip event listener
-      cardTop.addEventListener('mouseover', () => {
+      cardTop.addEventListener('mouseenter', () => {
         const tooltip = document.createElement('div');
         tooltip.className = 'tooltip';
 
@@ -48,12 +49,19 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
         const favoriteButton = document.createElement('button');
         favoriteButton.textContent = 'Favorite';
         favoriteButton.className = 'favorite-btn';
+
+        // Add event listener to the favorite button
+        favoriteButton.addEventListener('click', () => {
+          favoriteData.push(pokemonData.id);
+          localStorage.setItem('favorites', JSON.stringify(favoriteData));
+        });
+
         tooltip.appendChild(favoriteButton);
 
         cardTop.appendChild(tooltip);
       });
 
-      cardTop.addEventListener('mouseout', () => {
+      cardTop.addEventListener('mouseleave', () => {
         const tooltip = cardTop.querySelector('.tooltip');
         if (tooltip) {
           cardTop.removeChild(tooltip);
