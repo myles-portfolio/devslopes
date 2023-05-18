@@ -1,5 +1,5 @@
 const cardsContainer = document.querySelector('.grid-container');
-const favoriteData = [];
+export const favoriteData = [];
 
 // Make a GET request to the PokeAPI for the first 30 Pokemon
 fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
@@ -56,8 +56,9 @@ fetch('https://pokeapi.co/api/v2/pokemon?limit=30')
           localStorage.setItem('favorites', JSON.stringify(favoriteData));
         });
 
+        // Add favorite button to tooltip element
         tooltip.appendChild(favoriteButton);
-
+        // Add tooltip to card top element
         cardTop.appendChild(tooltip);
       });
 
