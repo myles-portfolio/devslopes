@@ -8,15 +8,24 @@ class MyClassComp extends React.Component {
     this.state = {
       name: '',
       count: 0,
+      date: new Date(),
       stateName: this.props.propName,
     }
     //this.shuffle = this.shuffle.bind(this); Arrow functions are a cleaner way to do this; see below shuffle().
   }
 
-  // Lifecycle Hooks
-  popup() {
-    alert('Hello World!');
+  // Lifecycle Method
+  componentDidMount() {
+    // this.timerId = setInterval(() => this.tick(), 1000);
+    // so API call => result
+    // this.setState({ data: result });
   }
+
+  componentWillUnmount() {
+    clearInterval(this.timeId);
+  }
+
+  tick = () => this.setState({ date: new Date() });
 
   shuffle = () => {
     const i = Math.floor(Math.random() * this.names.length);
@@ -27,21 +36,14 @@ class MyClassComp extends React.Component {
     })
   }
 
-  increment = () => this.setState({count: this.state.count + 1});
-
   render() {
-    const { name, count, stateName } = this.state;
-    const { anotherProp } = this.props;
+    const { name, date } = this.state;
     return (
       <div>
-        <div>Hello, {name}👋</div>
-        <div>{stateName}</div>
-        <div>{anotherProp}</div>
-        <h2>{count}</h2>
+        <h2>Hello, {name}👋</h2>
+        <h2>It is {date.toLocaleTimeString()}</h2>
         <button onClick={this.shuffle}>Click Me</button>
-        <button onClick={this.increment}>Count Up</button>
       </div>
-
     )
   }
 }
