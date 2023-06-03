@@ -6,6 +6,20 @@ input[type="submit"] {
 	font-weight: bold;
 }
 
+.btn {
+	width: 200px;
+	padding: 0.5rem 0;
+	border-radius: 8px;
+	box-shadow: 10px 10px 20px rgba(0.13, 0.15, 0.17, 0.1);
+	transition: 0.3s ease-in;
+}
+
+.btn:hover {
+	transform: translateY(-5px);
+	background: #ff6453;
+	border: 1px solid #ff6453;
+}
+
 .btn-wrapper {
 	text-align: center;
 }
