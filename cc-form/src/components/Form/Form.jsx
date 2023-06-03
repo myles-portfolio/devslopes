@@ -2,6 +2,8 @@
 import React from "react";
 import { InputBase } from "../InputBase/InputBase";
 import "./Form.css";
+import { OTHER_CARDS } from "../../constants";
+import { cardNumberValidation } from "../../validations";
 
 const INIT_CARD = {
 	cardNum: "",
@@ -16,9 +18,57 @@ class Form extends React.Component {
 
 		this.state = {
 			cardData: INIT_CARD,
-			maxLength: 19,
+			maxLength: OTHER_CARDS.length,
+			error: {},
+			cardType: null,
 		};
 	}
+
+	findCardType = (cardNumber) => {
+		const regexPattern = {
+			MASTERCARD: /^5[1-5][0-9]{1,}|^2[2-7][0-9]{1,}$/,
+			VISA: /^4[0-9]{2,}$/,
+			AMERICAN_EXPRESS: /^3[47][0-9]{5,}$/,
+			DISCOVER: /^6(?:011|5[0-9]{2})[0-9]{3,}$/,
+		};
+		for (const card in regexPattern) {
+			if (cardNumber.replace(/[^\d]/g, "").match(regexPattern[card]))
+				return card;
+		}
+		return "";
+	};
+
+	handleValidations = (type, value) => {
+		let errorMsg;
+		switch (type) {
+			case "cardNum":
+				errorMsg = cardNumberValidation(value);
+				this.setState((prevState) => ({
+					cardType: this.findCardType(value),
+					error: {
+						...prevState.error,
+						cardError: errorMsg,
+					},
+				}));
+				break;
+			case "cardHolder":
+				// checks for spaces and numbers
+				// setState error
+				break;
+			case "expiry":
+				// check date format
+				// setState error
+				break;
+			case "cvc":
+				// check min length
+				// setState error
+				break;
+			default:
+				break;
+		}
+	};
+
+	handleBlur = (e) => this.handleValidations(e.target.name, e.target.value);
 
 	handleInputData = (e) => {
 		if (e.target.name === "cardNum") {
@@ -63,6 +113,7 @@ class Form extends React.Component {
 									onChange={this.handleInputData}
 									autoComplete="off"
 									maxLength={this.state.maxLength}
+									onBlur={this.handleBlur}
 								/>
 						  ))
 						: null}
